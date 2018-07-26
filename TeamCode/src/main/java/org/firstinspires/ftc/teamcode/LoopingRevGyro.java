@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.robotcontroller.internal;
+package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -11,8 +11,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
-import org.firstinspires.ftc.robotcontroller.internal.Updatable;
-import org.firstinspires.ftc.robotcontroller.internal.GyroMethods;
 
 import static java.lang.Math.toRadians;
 import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;

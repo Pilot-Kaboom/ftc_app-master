@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.robotcontroller.internal.old_test_code;
+package org.firstinspires.ftc.teamcode.old_test_code;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 /**
  * Created by Keith Harder on 1/16/2018.
  */
-@Autonomous(name="BlueBall2", group="Auto1")
-public class BlueBall2 extends LinearOpMode {
+@Autonomous(name="RedBall1", group="Auto1")
+public class RedBall1 extends LinearOpMode {
 
     private DcMotor FLM;
     private DcMotor FRM;
@@ -87,7 +87,7 @@ public class BlueBall2 extends LinearOpMode {
             FLM.setPower(-.5);
             BRM.setPower(.5);
             BLM.setPower(.5);*/
-            finger.setPosition(.6);
+            finger.setPosition(0);
 
         }
 
@@ -97,35 +97,35 @@ public class BlueBall2 extends LinearOpMode {
             FLM.setPower(1);
             BRM.setPower(-1);
             BLM.setPower(-1);*/
-            finger.setPosition(0);
+            finger.setPosition(.6);
 
         }
         finger.setPosition(.55);
         arm.setPosition(.6);
         time.reset();
-        while (opModeIsActive() && time.seconds() <.5){
-            FRM.setPower(1);
-            FLM.setPower(1);
-            BRM.setPower(-1);
-            BLM.setPower(-1);
+        while (opModeIsActive() && time.seconds() <.75){
+            FRM.setPower(-1);
+            FLM.setPower(-1);
+            BRM.setPower(1);
+            BLM.setPower(1);
         }
-
+        /*
         time.reset();
-        while (opModeIsActive() && time.seconds() <1.2){
-            FRM.setPower(-.5);
-            FLM.setPower(-.5);
-            BRM.setPower(-.5);
-            BLM.setPower(-.5);
-        }
-
-        time.reset();
-
-        while (opModeIsActive() && time.seconds() <.3){
+        while (opModeIsActive() && time.seconds() <0){
             FRM.setPower(.5);
             FLM.setPower(.5);
             BRM.setPower(-.5);
             BLM.setPower(-.5);
         }
+
+        time.reset();
+
+        while (opModeIsActive() && time.seconds() <0){
+            FRM.setPower(.5);
+            FLM.setPower(.5);
+            BRM.setPower(-.5);
+            BLM.setPower(-.5);
+        }*/
         FRM.setPower(0);
         FLM.setPower(0);
         BRM.setPower(0);
@@ -143,7 +143,7 @@ public class BlueBall2 extends LinearOpMode {
 
         }
         time.reset();
-        while (opModeIsActive() && time.seconds() <.5){
+        while (opModeIsActive() && time.seconds() <1){
             FLM.setPower(1);
             FRM.setPower(-1);
             BLM.setPower(1);
@@ -152,42 +152,42 @@ public class BlueBall2 extends LinearOpMode {
 
         }
         time.reset();
+        while (opModeIsActive() && time.seconds() <.2){
+            FLM.setPower(-.5);
+            FRM.setPower(.5);
+            BLM.setPower(-.5);
+            BRM.setPower(.5);
+            lift.setPower(-1);
+
+
+        }
+        time.reset();
+        while (opModeIsActive() && time.seconds() <1){
+            thunker.setPower(.33);
+            gate.setPosition(0);
+            lift.setPower(-1);
+        }
+        time.reset();
+        while (opModeIsActive() && time.seconds() <1){
+            FLM.setPower(-1);
+            FRM.setPower(1);
+            BLM.setPower(-1);
+            BRM.setPower(1);
+            lift.setPower(-1);
+
+
+        }
+        time.reset();
         while (opModeIsActive() && time.seconds() <.5){
             FLM.setPower(-.5);
             FRM.setPower(.5);
             BLM.setPower(-.5);
             BRM.setPower(.5);
-
-
-
-        }
-        FRM.setPower(0);
-        FLM.setPower(0);
-        BRM.setPower(0);
-        BLM.setPower(0);
-        time.reset();
-        while (opModeIsActive() && time.seconds() <1){
-            thunker.setPower(.33);
-
-            lift.setPower(-1);
-        }
-        time.reset();
-        while (opModeIsActive() && time.seconds() <1){
-
-            lift.setPower(-1);
-
-
-        }
-        time.reset();
-        while (opModeIsActive() && time.seconds() <.2){
-
             lift.setPower(1);
         }
         lift.setPower(0);
-
-
-        /*time.reset();
-        while (opModeIsActive() && time.seconds() <1){
+        time.reset();
+        while (opModeIsActive() && time.seconds() <.9){
             FLM.setPower(-1);
             FRM.setPower(-1);
             BLM.setPower(-1);
@@ -195,7 +195,7 @@ public class BlueBall2 extends LinearOpMode {
 
         }
         time.reset();
-        while (opModeIsActive() && time.seconds() <.65){
+        while (opModeIsActive() && time.seconds() <.55){
             FLM.setPower(1);
             FRM.setPower(1);
             BLM.setPower(1);
@@ -252,7 +252,7 @@ public class BlueBall2 extends LinearOpMode {
             BLM.setPower(-1);
             BRM.setPower(1);
 
-        }*/
+        }
 
 
     }

@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.KNO3;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.robotcontroller.internal.old_test_code.AutoTransitioner;
+import org.firstinspires.ftc.teamcode.old_test_code.AutoTransitioner;
 import org.firstinspires.ftc.robotcore.external.Func;
 
 @Autonomous(name = "AutoTransitioningAuto")

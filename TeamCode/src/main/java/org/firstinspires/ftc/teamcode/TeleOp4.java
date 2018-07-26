@@ -1,20 +1,14 @@
-package org.firstinspires.ftc.robotcontroller.internal;
+package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcontroller.internal.Updatable;
-import org.firstinspires.ftc.robotcontroller.internal.UpdatingManager;
-import org.firstinspires.ftc.robotcontroller.internal.LoopingRevGyro;
-
 import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;
 
-@TeleOp(name="TeleOp4", group="Tele1")
+
 public class TeleOp4 extends LinearOpMode{
     private DcMotor FLM;
     private DcMotor FRM;

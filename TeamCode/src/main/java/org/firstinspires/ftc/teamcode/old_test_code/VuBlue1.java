@@ -1,8 +1,6 @@
-package org.firstinspires.ftc.robotcontroller.internal.old_test_code;
+package org.firstinspires.ftc.teamcode.old_test_code;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import java.util.prefs.Preferences;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -11,23 +9,16 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
-import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
-import org.firstinspires.ftc.robotcore.external.navigation.VuMarkInstanceId;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 /**
  * Created by Keith Harder on 1/16/2018.
  */
-@Autonomous(name="VuBlue1B", group="Auto1")
-public class VuBlue1B extends LinearOpMode {
+@Autonomous(name="VuBlue1", group="Auto1")
+public class VuBlue1 extends LinearOpMode {
 
 
     public static final String TAG = "Vuforia VuMark Sample";
@@ -69,7 +60,6 @@ public class VuBlue1B extends LinearOpMode {
     private Boolean rc;
     private Boolean lc;
     private Boolean done;
-    private int AmbLight;
 
     private ElapsedTime time = new ElapsedTime();
     private ElapsedTime atime = new ElapsedTime();
@@ -271,103 +261,74 @@ public class VuBlue1B extends LinearOpMode {
             BRM.setPower(-1);
             thunker.setPower(0);
 
-
         }
         //go get more
         time.reset();
-        while (opModeIsActive() && time.seconds() <3){
-            FLM.setPower(-.5);
-            FRM.setPower(.5);
-            BLM.setPower(-.5);
-            BRM.setPower(.5);
-            lift.setPower(-1);
-            thunker.setPower(.33);
-            gate.setPosition(0);
-            if (right){
-                AmbLight = Rcolor.blue()-Rcolor.red();
-            }
-            if (left){
-                AmbLight = Lcolor.blue()-Lcolor.red();
-            }
-            if (center && time.seconds() >2){
-                AmbLight = Lcolor.blue()-Lcolor.red();
-            }
-        }
-
-        time.reset();
-        while (opModeIsActive() && time.seconds() <1.5 && NoColor){
-            telemetry.addData("BlueR ", Rcolor.blue());
-            telemetry.addData("BlueL ", Lcolor.blue());
-            telemetry.update();
+        while (opModeIsActive() && time.seconds() <3 && NoColor){
             FLM.setPower(-.75);
             FRM.setPower(.75);
             BLM.setPower(-.75);
             BRM.setPower(.75);
             lift.setPower(-1);
 
-            if (Lcolor.blue()-Lcolor.red() > AmbLight+5 || Rcolor.blue()-Rcolor.red() > AmbLight+5 && time.seconds()> .5){
-
+            if (Lcolor.blue() > .2 || Rcolor.blue() > .2){
                 NoColor = false;
             }
         }
-        FLM.setPower(0);
-        FRM.setPower(0);
-        BLM.setPower(0);
-        BRM.setPower(0);
-        lift.setPower(0);
         NoColor = true;
-        NoBlock = true;
         //collect
         time.reset();
         while (opModeIsActive() && NoBlock){
 
+            if(Block.blue()>.2 || Block.red() >.2){
+                atime.reset();
+                if(Block.blue()>.2 && atime.seconds() > .5 || Block.red() >.2 && atime.seconds() > .5){
+                    NoBlock = false;
+                }
+            }
 
-
-            if (opModeIsActive() && time.seconds() <.9){
+            while (opModeIsActive() && time.seconds() <.9){
                 FLM.setPower(-1);
                 FRM.setPower(-1);
                 BLM.setPower(-1);
                 BRM.setPower(-1);
                 lift.setPower(1);
             }
+            lift.setPower(0);
+            thunker.setPower(.0);
+            FRM.setPower(0);
+            FLM.setPower(0);
+            BRM.setPower(0);
+            BLM.setPower(0);
+            sleep(333);
 
-
-            else if (opModeIsActive() && time.seconds() <2.3 && time.seconds() >.9){
+            while (opModeIsActive() && time.seconds() <2.3 && time.seconds() >.9){
                 FLM.setPower(.31);
                 FRM.setPower(.31);
                 BLM.setPower(.31);
                 BRM.setPower(.31);
                 flapper.setPower(-1);
-                lift.setPower(0);
             }
-            else if (opModeIsActive() && time.seconds() >2.3 && time.seconds() < 3.1){
+            while (opModeIsActive() && time.seconds() >2.3 && time.seconds() < 3.1){
                 FLM.setPower(-1);
                 FRM.setPower(1);
                 BLM.setPower(-1);
                 BRM.setPower(1);
                 flapper.setPower(-1);
             }
-            else if   (opModeIsActive() && time.seconds() <3.6 && time.seconds() > 3.1){
+            while (opModeIsActive() && time.seconds() <3.6 && time.seconds() > 3.1){
                 FLM.setPower(1);
                 FRM.setPower(-1);
                 BLM.setPower(1);
                 BRM.setPower(-1);
                 flapper.setPower(-1);
             }
-            else if (opModeIsActive() && time.seconds() >3.6 && time.seconds() < 4.4){
+            while (opModeIsActive() && time.seconds() >3.6 && time.seconds() < 4.4){
                 FLM.setPower(-1);
                 FRM.setPower(1);
                 BLM.setPower(-1);
                 BRM.setPower(1);
                 flapper.setPower(-1);
-
-            }
-            else{
-                FLM.setPower(0);
-                FRM.setPower(0);
-                BLM.setPower(0);
-                BRM.setPower(0);
-                lift.setPower(0);
                 NoBlock = false;
             }
         }
@@ -406,19 +367,16 @@ public class VuBlue1B extends LinearOpMode {
         }
         //straighten
         while (opModeIsActive() && NoColor){
-            telemetry.addData("BlueR ", Rcolor.blue());
-            telemetry.addData("BlueL ", Lcolor.blue());
-            telemetry.update();
             FLM.setPower(.3);
             FRM.setPower(-.3);
             BLM.setPower(.3);
             BRM.setPower(-.3);
-            if (Lcolor.blue()-Lcolor.red() > AmbLight+5){
+            if (Lcolor.blue() > .2){
                 NoColor = false;
                 lc = true;
                 rc = false;
             }
-            if (Rcolor.blue()-Rcolor.red() > AmbLight+5 ){
+            if (Rcolor.blue() >.2 ){
                 NoColor = false;
                 rc = true;
                 lc = false;
@@ -428,10 +386,7 @@ public class VuBlue1B extends LinearOpMode {
         //drive to straighten
         while (opModeIsActive() && rc){
             //do stuff.
-            telemetry.addData("BlueR ", Rcolor.blue());
-            telemetry.addData("BlueL ", Lcolor.blue());
-            telemetry.update();
-            if (Lcolor.blue() -Lcolor.red() > AmbLight+5){
+            if (Lcolor.blue() > .2){
                 done = true;
             }
             if (opModeIsActive() && !done){
@@ -459,7 +414,7 @@ public class VuBlue1B extends LinearOpMode {
         }
         while (opModeIsActive() && lc){
             //do stuff.
-            if (Rcolor.blue() -Lcolor.red() > AmbLight+5){
+            if (Rcolor.blue() > .2){
                 done = true;
             }
             if (opModeIsActive() && !done){
@@ -512,26 +467,6 @@ public class VuBlue1B extends LinearOpMode {
             thunker.setPower(0);
             center=true;
         }
-
-        time.reset();
-        while (opModeIsActive() && time.seconds() <3){
-            FLM.setPower(-.5);
-            FRM.setPower(.5);
-            BLM.setPower(-.5);
-            BRM.setPower(.5);
-            lift.setPower(-1);
-            thunker.setPower(.33);
-            gate.setPosition(0);
-            if (right){
-                AmbLight = Rcolor.blue();
-            }
-            if (left){
-                AmbLight = Lcolor.blue();
-            }
-            if (center && time.seconds() >2){
-                AmbLight = Lcolor.blue();
-            }
-        }
         //go get 4 & 5
         time.reset();
         while (opModeIsActive() && time.seconds() <3 && NoColor){
@@ -541,8 +476,7 @@ public class VuBlue1B extends LinearOpMode {
             BRM.setPower(.75);
 
 
-            if (Lcolor.blue()-Lcolor.red() > AmbLight || Rcolor.blue() > AmbLight+25 && time.seconds()> .5){
-
+            if (Lcolor.blue() > .2 || Rcolor.blue() > .2){
                 NoColor = false;
             }
         }
@@ -951,12 +885,6 @@ public class VuBlue1B extends LinearOpMode {
             FRM.setPower(1);
             BLM.setPower(-1);
             BRM.setPower(1);
-            if(ods.getLightDetected()>.6){
-                ttime.reset();
-                if(ods > .6 && ttime > .75){
-                    block = true;
-                }
-            }
 
         }*/
 
