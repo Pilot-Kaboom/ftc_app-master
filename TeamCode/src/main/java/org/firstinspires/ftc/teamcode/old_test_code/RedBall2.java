@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 /**
  * Created by Keith Harder on 1/16/2018.
  */
-@Autonomous(name="RedBall2", group="Auto1")
+
 public class RedBall2 extends LinearOpMode {
 
     private DcMotor FLM;

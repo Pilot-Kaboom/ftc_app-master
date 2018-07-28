@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name="TeleOp3", group="Tele1")
+
 public class TeleOp3 extends OpMode{
     private DcMotor FLM;
     private DcMotor FRM;

@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public abstract class ElayneBotHard extends superSuperClass {
 
-    private DcMotor left;
-    private DcMotor right;
+    public DcMotor left;
+    public DcMotor right;
 
     public ElapsedTime time;
 
@@ -23,12 +23,15 @@ public abstract class ElayneBotHard extends superSuperClass {
         right = hardwareMap.dcMotor.get("right");
 
         left.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        time.reset();
     }
 
     public void powerLeft(double power){
         left.setPower(power);
     }
     public void powerRight(double power){
+
         right.setPower(power);
     }
 }

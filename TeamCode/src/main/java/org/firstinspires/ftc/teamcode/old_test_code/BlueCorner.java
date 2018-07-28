@@ -5,7 +5,7 @@ package org.firstinspires.ftc.teamcode.old_test_code;
         import com.qualcomm.robotcore.hardware.DcMotor;
         import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name="BlueCorner", group="Tele1")
+
 public class BlueCorner extends OpMode{
 
     private DcMotor FLM;

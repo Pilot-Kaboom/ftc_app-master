@@ -17,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 /**
  * Created by Keith Harder on 1/16/2018.
  */
-@Autonomous(name="VuBlue1", group="Auto1")
+
 public class VuBlue1 extends LinearOpMode {
 
 

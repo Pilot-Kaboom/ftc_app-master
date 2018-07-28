@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.old_test_code.MasterVuforia;
  * Created by recharged on 12/13/17.
  */
 
-@TeleOp(name = "RechargedVuforiaExample", group = "Tele1")
+
 public class RechargedVuforiaExample extends LinearOpMode{
     MasterVuforia vuforia;
     public void runOpMode() throws InterruptedException{
