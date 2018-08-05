@@ -10,17 +10,21 @@ public class KeithsIdeaOfFun extends ElayneBotHard{
 
     @Override
     public void run() {
-        while (opModeIsActive()){
-            while (time.seconds()<3){
-                left.setPower(-3);
-            }
-            while (time.seconds()<3){
-                right.setPower(3);
-            }
-            while (time.seconds()<3){
-                left.setPower(-3);
-                right.setPower(3);
-            }
+
+
+        while (opModeIsActive() && time.seconds()<3){
+            left.setPower(-1);
         }
+        time.reset();
+        while (opModeIsActive() &&time.seconds()<3){
+            right.setPower(1);
+            left.setPower(0);
+        }
+        time.reset();
+        while (opModeIsActive() &&time.seconds()<3){
+            left.setPower(-1);
+            right.setPower(1);
+        }
+
     }
 }

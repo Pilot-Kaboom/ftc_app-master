@@ -7,14 +7,15 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
  */
 @Autonomous(name="ElayneTestAuto", group="Auto1")
 public class ElayneTestAuto extends ElayneBotHard {
+
+
     @Override
     public void run() {
-        while (opModeIsActive()){
-            while (time.seconds()<2){
-                left.setPower(-1);
-                right.setPower(1);
-            }
 
+        while (opModeIsActive()&& time.seconds() <2){
+
+            left.setPower(-1);
+            right.setPower(1);
 
         }
     }

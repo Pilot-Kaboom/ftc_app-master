@@ -12,8 +12,10 @@ public class ElayneBotTele extends ElayneBotHard {
     public void run() {
 
         while(opModeIsActive()){
-            powerLeft(gamepad1.left_stick_y);
+            powerLeft(-gamepad1.left_stick_y);
             powerRight(gamepad1.right_stick_y);
+
+            arm.setPower(gamepad1.right_trigger - gamepad1.left_trigger);
         }
     }
 
