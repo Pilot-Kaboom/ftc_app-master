@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Oldish_used_code;
 
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -19,7 +19,7 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGR
  * Created by user on 2/19/2018.
  */
 
-public class LoopingRevGyro implements GyroMethods, Updatable{
+public class LoopingRevGyro implements GyroMethods, Updatable {
 
     private final String configName;
     volatile public BNO055IMU imu;

@@ -1,8 +1,7 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Oldish_used_code;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -14,6 +13,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.teamcode.Oldish_used_code.LoopingRevGyro;
+import org.firstinspires.ftc.teamcode.Oldish_used_code.UpdatingManager;
+
 
 import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;
 
@@ -21,8 +23,7 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGR
  * Created by Keith Harder on 1/16/2018.
  */
 
-
-public class VuRed2B extends LinearOpMode {
+public class VuBlue2B extends LinearOpMode {
 
 
     public static final String TAG = "Vuforia VuMark Sample";
@@ -86,6 +87,7 @@ public class VuRed2B extends LinearOpMode {
         ods = hardwareMap.opticalDistanceSensor.get("ods");
         odst = hardwareMap.opticalDistanceSensor.get("BlockT");
         odsb = hardwareMap.opticalDistanceSensor.get("odsb");
+
         red = false;
         blue = false;
         block = false;
@@ -112,6 +114,7 @@ public class VuRed2B extends LinearOpMode {
         updatingManager.start();
         relicTrackables.activate();
 
+
         telemetry.addData("Z", gyro.getGyroZ(DEGREES));
         telemetry.update();
 
@@ -124,7 +127,7 @@ public class VuRed2B extends LinearOpMode {
         //gyro.resetGyroZ();
         shover.setPosition(1);
 
-        gate.setPosition(.7);
+        gate.setPosition(.8);
         time.reset();
         while (opModeIsActive() && time.seconds() <.5){
 
@@ -177,7 +180,7 @@ public class VuRed2B extends LinearOpMode {
             FLM.setPower(-.5);
             BRM.setPower(.5);
             BLM.setPower(.5);*/
-            finger.setPosition(.0);
+            finger.setPosition(.6);
 
         }
 
@@ -187,7 +190,7 @@ public class VuRed2B extends LinearOpMode {
             FLM.setPower(1);
             BRM.setPower(-1);
             BLM.setPower(-1);*/
-            finger.setPosition(0.6);
+            finger.setPosition(0);
 
         }
         finger.setPosition(.4);
@@ -195,27 +198,27 @@ public class VuRed2B extends LinearOpMode {
         //drive off stone
         time.reset();
         while (opModeIsActive() && time.seconds() <.675){
-            FRM.setPower(-1);
-            FLM.setPower(-1);
-            BRM.setPower(1);
-            BLM.setPower(1);
+            FRM.setPower(1);
+            FLM.setPower(1);
+            BRM.setPower(-1);
+            BLM.setPower(-1);
         }
         //turn to alingment with cryptobox
         time.reset();
         while (opModeIsActive() && time.seconds() <1.6){
             telemetry.addData("Z", gyro.getGyroZ(DEGREES));
             telemetry.update();
-            if(gyro.getGyroZ(DEGREES) < 85){
-                FRM.setPower(.5);
-                FLM.setPower(.5);
-                BRM.setPower(.5);
-                BLM.setPower(.5);
+            if(gyro.getGyroZ(DEGREES) > -85){
+                FRM.setPower(-.5);
+                FLM.setPower(-.5);
+                BRM.setPower(-.5);
+                BLM.setPower(-.5);
             }
-            else if(gyro.getGyroZ(DEGREES) > 87){
-                FRM.setPower(-.2);
-                FLM.setPower(-.2);
-                BRM.setPower(-.2);
-                BLM.setPower(-.2);
+            else if(gyro.getGyroZ(DEGREES) < -87){
+                FRM.setPower(.2);
+                FLM.setPower(.2);
+                BRM.setPower(.2);
+                BLM.setPower(.2);
             }
             else{
                 FRM.setPower(0);
@@ -226,31 +229,25 @@ public class VuRed2B extends LinearOpMode {
         }
         //drive to cryptokey
         time.reset();
-        while (opModeIsActive() && time.seconds() <.45 && center){
-            FRM.setPower(-.5);
-            FLM.setPower(-.5);
-            BRM.setPower(.5);
-            BLM.setPower(.5);
+        while (opModeIsActive() && time.seconds() <.3 && center){
+            FRM.setPower(.5);
+            FLM.setPower(.5);
+            BRM.setPower(-.5);
+            BLM.setPower(-.5);
         }
         time.reset();
-        while (opModeIsActive() && time.seconds() <.2 && right){
-            FRM.setPower(-.5);
-            FLM.setPower(-.5);
-            BRM.setPower(.5);
-            BLM.setPower(.5);
-        }
-        time.reset();
-        while (opModeIsActive() && time.seconds() <.65 && left){
-            FRM.setPower(-.5);
-            FLM.setPower(-.5);
-            BRM.setPower(.5);
-            BLM.setPower(.5);
+        while (opModeIsActive() && time.seconds() <.475 && right){
+            FRM.setPower(.5);
+            FLM.setPower(.5);
+            BRM.setPower(-.5);
+            BLM.setPower(-.5);
         }
         FRM.setPower(0);
         FLM.setPower(0);
         BRM.setPower(0);
         BLM.setPower(0);
         //dump block {
+
         time.reset();
         while (opModeIsActive() && time.seconds() <1){
             thunker.setPower(-.33);
@@ -282,42 +279,42 @@ public class VuRed2B extends LinearOpMode {
         //}
         //drive past stone
         time.reset();
-        while (opModeIsActive() && time.seconds() <.515 && center){
-            FRM.setPower(-.5);
-            FLM.setPower(-.5);
-            BRM.setPower(.5);
-            BLM.setPower(.5);
+        while (opModeIsActive() && time.seconds() <.85 && center){
+            FRM.setPower(.5);
+            FLM.setPower(.5);
+            BRM.setPower(-.5);
+            BLM.setPower(-.5);
         }
         time.reset();
-        while (opModeIsActive() && time.seconds() <.8 && right){
-            FRM.setPower(-.5);
-            FLM.setPower(-.5);
-            BRM.setPower(.5);
-            BLM.setPower(.5);
+        while (opModeIsActive() && time.seconds() <.37 && right){
+            FRM.setPower(.5);
+            FLM.setPower(.5);
+            BRM.setPower(-.5);
+            BLM.setPower(-.5);
         }
         time.reset();
-        while (opModeIsActive() && time.seconds() <.3 && left){
-            FRM.setPower(-.5);
-            FLM.setPower(-.5);
-            BRM.setPower(.5);
-            BLM.setPower(.5);
+        while (opModeIsActive() && time.seconds() <1 && left){
+            FRM.setPower(.5);
+            FLM.setPower(.5);
+            BRM.setPower(-.5);
+            BLM.setPower(-.5);
         }
         //turn to alingment with tape
         time.reset();
         while (opModeIsActive() && time.seconds() <2){
             telemetry.addData("Z", gyro.getGyroZ(DEGREES));
             telemetry.update();
-            if(gyro.getGyroZ(DEGREES) >5){
-                FRM.setPower(-.5);
-                FLM.setPower(-.5);
-                BRM.setPower(-.5);
-                BLM.setPower(-.5);
+            if(gyro.getGyroZ(DEGREES) < -5){
+                FRM.setPower(.5);
+                FLM.setPower(.5);
+                BRM.setPower(.5);
+                BLM.setPower(.5);
             }
-            else if(gyro.getGyroZ(DEGREES) < -3){
-                FRM.setPower(.2);
-                FLM.setPower(.2);
-                BRM.setPower(.2);
-                BLM.setPower(.2);
+            else if(gyro.getGyroZ(DEGREES) > 3){
+                FRM.setPower(-.2);
+                FLM.setPower(-.2);
+                BRM.setPower(-.2);
+                BLM.setPower(-.2);
             }
             else{
                 FRM.setPower(0);
@@ -330,32 +327,32 @@ public class VuRed2B extends LinearOpMode {
         }
         //drive to pile
         time.reset();
-        while (opModeIsActive() && time.seconds() <1.5){
-            FRM.setPower(.5);
-            FLM.setPower(.5);
-            BRM.setPower(-.5);
-            BLM.setPower(-.5);
+        while (opModeIsActive() && time.seconds() <1.4){
+            FRM.setPower(-.5);
+            FLM.setPower(-.5);
+            BRM.setPower(.5);
+            BLM.setPower(.5);
             thunker.setPower(.33);
             gate.setPosition(0);
 
         }
         //get blocks
         time.reset();
-        while (opModeIsActive() && time.seconds() <1.5){
+        while (opModeIsActive() && time.seconds() <1){
             shover.setPosition(.7);
 
             lift.setPower(0);
-            if(gyro.getGyroZ(DEGREES) <43){
-                FRM.setPower(.5);
-                FLM.setPower(.5);
-                BRM.setPower(.5);
-                BLM.setPower(.5);
+            if(gyro.getGyroZ(DEGREES) >-43){
+                FRM.setPower(-.5);
+                FLM.setPower(-.5);
+                BRM.setPower(-.5);
+                BLM.setPower(-.5);
             }
-            else if(gyro.getGyroZ(DEGREES) > 47){
-                FRM.setPower(-.2);
-                FLM.setPower(-.2);
-                BRM.setPower(-.2);
-                BLM.setPower(-.2);
+            else if(gyro.getGyroZ(DEGREES) < -47){
+                FRM.setPower(.2);
+                FLM.setPower(.2);
+                BRM.setPower(.2);
+                BLM.setPower(.2);
             }
             else{
                 FRM.setPower(0);
@@ -380,14 +377,18 @@ public class VuRed2B extends LinearOpMode {
 
             }
 
-            FLM.setPower(-.4);
+            FLM.setPower(-.5);
             FRM.setPower(.5);
-            BLM.setPower(-.4);
+            BLM.setPower(-.5);
             BRM.setPower(.5);
-            if(ods.getLightDetected()>.6 && (odst.getLightDetected() > .6 || odsb.getLightDetected() > .6)){
-                block=true;
+            if(ods.getLightDetected()>.6 && (odst.getLightDetected() > .6 || odsb.getLightDetected() >.6)){
+                block = true;
 
             }
+
+
+
+
         }
         shover.setPosition(1);
         /*
@@ -429,12 +430,21 @@ public class VuRed2B extends LinearOpMode {
             }
         }*/
         time.reset();
-        while (opModeIsActive() && time.seconds() < .9){
+        while (opModeIsActive() && time.seconds() < .95){
+            if (block){
+                flapper.setPower(0);
+
+            }
+
             FLM.setPower(1);
             FRM.setPower(-1);
             BLM.setPower(1);
             BRM.setPower(-1);
             shover.setPosition(1);
+            if(ods.getLightDetected()>.6 && (odst.getLightDetected() > .6 || odsb.getLightDetected() >.6)){
+                block = true;
+
+            }
 
         }
         /*
@@ -479,96 +489,59 @@ public class VuRed2B extends LinearOpMode {
 
         time.reset();
 
-        while (opModeIsActive() && time.seconds() < .75){
-            FLM.setPower(-.75);
-            FRM.setPower(1);
-            BLM.setPower(-.75);
-            BRM.setPower(1);
+        while (opModeIsActive() && time.seconds() < .9){
+            FLM.setPower(-1);
+            FRM.setPower(.75);
+            BLM.setPower(-1);
+            BRM.setPower(.75);
             flapper.setPower(-1);
             shover.setPosition(1);
 
         }
         time.reset();
-        while (opModeIsActive()&& time.seconds() < .5){
+        while (opModeIsActive()&& time.seconds() < .75){
             FLM.setPower(.51);
             FRM.setPower(-.51);
             BLM.setPower(.51);
             BRM.setPower(-.51);
         }
         time.reset();
-        while (opModeIsActive() && time.seconds() < .75){
-            if (block){
-                flapper.setPower(0);
-
-            }
-
-
-            FLM.setPower(-.75);
-            FRM.setPower(1);
-            BLM.setPower(-.75);
-            BRM.setPower(1);
-            shover.setPosition(1);
-            if(ods.getLightDetected()>.6 && (odst.getLightDetected() > .6 || odsb.getLightDetected() > .6)){
-                block = true;
-
-            }
-        }
-        time.reset();
-        while (opModeIsActive() && time.seconds() < .5){
-            if (block){
-                flapper.setPower(0);
-
-            }
-
-            FLM.setPower(.25);
-            FRM.setPower(-.25);
-            BLM.setPower(.25);
-            BRM.setPower(-.25);
-            shover.setPosition(1);
-            if(ods.getLightDetected()>.6 && (odst.getLightDetected() > .6 || odsb.getLightDetected() > .6)){
-                block=true;
-
-            }
-        }
-        time.reset();
-        while (opModeIsActive() && time.seconds() < .5){
-            FLM.setPower(-.75);
-            FRM.setPower(1);
-            BLM.setPower(-.75);
-            BRM.setPower(1);
+        while (opModeIsActive() && time.seconds() < .9){
+            FLM.setPower(-1);
+            FRM.setPower(.75);
+            BLM.setPower(-1);
+            BRM.setPower(.75);
             shover.setPosition(1);
 
         }
         time.reset();
-        while (opModeIsActive() && time.seconds() < .75){
-            FLM.setPower(.25);
-            FRM.setPower(-.25);
-            BLM.setPower(.25);
-            BRM.setPower(-.25);
-            shover.setPosition(1);
-
+        while (opModeIsActive()&& time.seconds() < .75){
+            FLM.setPower(.51);
+            FRM.setPower(-.51);
+            BLM.setPower(.51);
+            BRM.setPower(-.51);
         }
+
         time.reset();
         while (opModeIsActive() && time.seconds() <3.5){
             telemetry.addData("odst", odst.getLightDetected() );
             telemetry.addData("Z", gyro.getGyroZ(DEGREES));
             telemetry.update();
-
             if (block){
                 flapper.setPower(0);
 
             }
-            if(gyro.getGyroZ(DEGREES) > -181.5){
-                FRM.setPower(-.6);
-                FLM.setPower(-.6);
-                BRM.setPower(-.6);
-                BLM.setPower(-.6);
+            if(gyro.getGyroZ(DEGREES) < 181.5){
+                FRM.setPower(.6);
+                FLM.setPower(.6);
+                BRM.setPower(.6);
+                BLM.setPower(.6);
             }
-            else if(gyro.getGyroZ(DEGREES) < -182){
-                FRM.setPower(.24);
-                FLM.setPower(.24);
-                BRM.setPower(.24);
-                BLM.setPower(.24);
+            else if(gyro.getGyroZ(DEGREES) > 182){
+                FRM.setPower(-.24);
+                FLM.setPower(-.24);
+                BRM.setPower(-.24);
+                BLM.setPower(-.24);
             }
             else{
                 FRM.setPower(0);
@@ -577,7 +550,7 @@ public class VuRed2B extends LinearOpMode {
                 BLM.setPower(0);
             }
 
-            if(ods.getLightDetected()>.6 && (odst.getLightDetected() > .6 || odsb.getLightDetected() > .6)){
+            if(ods.getLightDetected()>.6 && (odst.getLightDetected() > .6 || odsb.getLightDetected() >.6)){
                 block = true;
 
             }
@@ -767,10 +740,10 @@ public class VuRed2B extends LinearOpMode {
             telemetry.addData("odst", odst.getLightDetected() );
             telemetry.update();
 
-            FRM.setPower(.5);
-            FLM.setPower(.5);
-            BRM.setPower(-.5);
-            BLM.setPower(-.5);
+            FRM.setPower(-.5);
+            FLM.setPower(-.5);
+            BRM.setPower(.5);
+            BLM.setPower(.5);
 
             flapper.setPower(0);
 
@@ -780,19 +753,22 @@ public class VuRed2B extends LinearOpMode {
             telemetry.addData("Z", gyro.getGyroZ(DEGREES));
             telemetry.addData("odst", odst.getLightDetected() );
             telemetry.update();
+
             if (block){
                 flapper.setPower(0);
 
             }
-            FRM.setPower(-.5);
-            FLM.setPower(-.5);
-            BRM.setPower(.5);
-            BLM.setPower(.5);
+            FRM.setPower(.5);
+            FLM.setPower(.5);
+            BRM.setPower(-.5);
+            BLM.setPower(-.5);
 
-            if(ods.getLightDetected()>.6 && (odst.getLightDetected() > .6 || odsb.getLightDetected() > .6)){
+            if(ods.getLightDetected()>.6 && (odst.getLightDetected() > .6  || odsb.getLightDetected() >.6)){
                 block = true;
 
             }
+
+
 
         }
         time.reset();
@@ -800,18 +776,21 @@ public class VuRed2B extends LinearOpMode {
             telemetry.addData("odst", odst.getLightDetected() );
             telemetry.addData("Z", gyro.getGyroZ(DEGREES));
             telemetry.update();
+            if (block){
+                flapper.setPower(0);
 
-            if(gyro.getGyroZ(DEGREES) > -268){
-                FRM.setPower(-.5);
-                FLM.setPower(-.5);
-                BRM.setPower(-.5);
-                BLM.setPower(-.5);
             }
-            else if(gyro.getGyroZ(DEGREES) < -272){
-                FRM.setPower(.2);
-                FLM.setPower(.2);
-                BRM.setPower(.2);
-                BLM.setPower(.2);
+            if(gyro.getGyroZ(DEGREES) < 268){
+                FRM.setPower(.5);
+                FLM.setPower(.5);
+                BRM.setPower(.5);
+                BLM.setPower(.5);
+            }
+            else if(gyro.getGyroZ(DEGREES) > 272){
+                FRM.setPower(-.2);
+                FLM.setPower(-.2);
+                BRM.setPower(-.2);
+                BLM.setPower(-.2);
             }
             else{
                 FRM.setPower(0);
@@ -820,17 +799,18 @@ public class VuRed2B extends LinearOpMode {
                 BLM.setPower(0);
             }
 
-            if(ods.getLightDetected()>.6 && (odst.getLightDetected() > .6 || odsb.getLightDetected() > .6)){
-                flapper.setPower(0);
+            if(ods.getLightDetected()>.6 && (odst.getLightDetected() > .6  || odsb.getLightDetected() >.6)){
+                block = true;
 
             }
+
         }
         time.reset();
-        while (opModeIsActive() && time.seconds() <.65 && left){
-            FRM.setPower(.5);
-            FLM.setPower(.5);
-            BRM.setPower(-.5);
-            BLM.setPower(-.5);
+        while (opModeIsActive() && time.seconds() < .96 && right){
+            FRM.setPower(-.5);
+            FLM.setPower(-.5);
+            BRM.setPower(.5);
+            BLM.setPower(.5);
             flapper.setPower(-1);
 
             if ( gamepad2.right_bumper && vtime.seconds()> .05){
@@ -843,11 +823,11 @@ public class VuRed2B extends LinearOpMode {
         }
 
         time.reset();
-        while (opModeIsActive() && time.seconds() <.33 && !left){
-            FRM.setPower(.5);
-            FLM.setPower(.5);
-            BRM.setPower(-.5);
-            BLM.setPower(-.5);
+        while (opModeIsActive() && time.seconds() <.375 && !right){
+            FRM.setPower(-.5);
+            FLM.setPower(-.5);
+            BRM.setPower(.5);
+            BLM.setPower(.5);
             flapper.setPower(-1);
             if ( gamepad2.right_bumper && vtime.seconds()> .05){
                 thunker.setPower(.5);
@@ -865,11 +845,7 @@ public class VuRed2B extends LinearOpMode {
         time.reset();
         while (opModeIsActive() && time.seconds() <1){
             flapper.setPower(-1);
-
-
-            gate.setPosition(.7);
-
-
+            gate.setPosition(1);
             if ( gamepad2.right_bumper && time.seconds()> .05){
                 thunker.setPower(.5);
                 vtime.reset();

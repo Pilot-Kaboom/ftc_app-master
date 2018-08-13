@@ -12,19 +12,18 @@ public class mecanumAutoTest extends mecanumBotHard {
     @Override
     public void run() {
 
-        while(opModeIsActive()){
-            while(time.seconds()<3){
-                goForward(1);
-            }
-            while(time.seconds()<2){
-                goLeft(1);
-            }
-            while(time.seconds()<3){
-                goBackward(1);
-            }
-            while(time.seconds()<2){
-                goRight(1);
-            }
+        while(opModeIsActive() && time.seconds()<3) {
+            goForward(1);
         }
+        while(opModeIsActive() && time.seconds()<2){
+            goRight(-1);
+        }
+        while(opModeIsActive() && time.seconds()<3){
+                goForward(1);
+        }
+        while(opModeIsActive() && time.seconds()<2){
+            goRight(1);
+        }
+
     }
 }
