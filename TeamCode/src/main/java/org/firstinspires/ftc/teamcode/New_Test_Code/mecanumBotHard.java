@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.New_Test_Code;
 
+
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  * Created by Keith Harder on 7/27/2018.
@@ -94,24 +94,35 @@ public abstract class mecanumBotHard extends superSuperClass {
         BLM.setPower(power);
         BRM.setPower(power);
     }
+    public void turn(double power){
+        FLM.setPower(power);
+        FRM.setPower(power);
+        BLM.setPower(power);
+        BRM.setPower(power);
+    }
+    public void StopMotors(double stop){
+        FLM.setPower(stop);
+        FRM.setPower(stop);
+        BLM.setPower(stop);
+        BRM.setPower(stop);
+    }
     public void ticks(){
-        FEC = FRM.getCurrentPosition() + BRM.getCurrentPosition() + -FLM.getCurrentPosition() +  -BLM.getCurrentPosition() / 4;
-        BEC = FLM.getCurrentPosition() +  BLM.getCurrentPosition() + -FRM.getCurrentPosition() + -BRM.getCurrentPosition() / 4;
-        REC = -FLM.getCurrentPosition() +  BLM.getCurrentPosition() + -FRM.getCurrentPosition() + BRM.getCurrentPosition() / 4;
-        LEC = FLM.getCurrentPosition() +  BLM.getCurrentPosition() + -FRM.getCurrentPosition() + -BRM.getCurrentPosition() / 4;
+        FEC = FRM.getCurrentPosition()/4 + BRM.getCurrentPosition()/4 + -FLM.getCurrentPosition()/4 +  -BLM.getCurrentPosition() / 4;
+        BEC = FLM.getCurrentPosition()/4 +  BLM.getCurrentPosition()/4 + -FRM.getCurrentPosition()/4 + -BRM.getCurrentPosition() / 4;
+        REC = -FLM.getCurrentPosition()/4 +  BLM.getCurrentPosition()/4 + -FRM.getCurrentPosition()/4 + BRM.getCurrentPosition() / 4;
+        LEC = FLM.getCurrentPosition()/4 +  -BLM.getCurrentPosition()/4 + FRM.getCurrentPosition()/4 + -BRM.getCurrentPosition() / 4;
     }
     public void ResetEC(){
         FLM.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         BLM.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         BRM.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FRM.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        idle();
-
+    }
+    public void RunInEC(){
         FLM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         BLM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         BRM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FRM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        idle();
     }
     public void telem(){
         telemetry.addData("FEC",FEC);
