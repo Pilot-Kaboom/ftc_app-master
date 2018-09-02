@@ -153,6 +153,7 @@ public abstract class mecanumBotHard extends superSuperClass {
         telemetry.addData("BRM", BRM.getCurrentPosition());
         telemetry.addData("FRM", FRM.getCurrentPosition());
         //telemetry.addData("ods", ODS.getLightDetected());
+        telemetry.addData("color", lights.getPosition());
         telemetry.update();
     }
     public void spdUpF(double dis){
