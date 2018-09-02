@@ -14,8 +14,24 @@ public class mecanumEncodedAuto extends mecanumBotHard {
         idle();
         RunInEC();
         idle();
-        while(opModeIsActive() && FEC < 1000){
-            goForward(.25);
+        while(opModeIsActive() && perc < tic){
+            spdUpF(500);
+        }
+        while(opModeIsActive() && FEC < 3000){
+
+
+            if(FEC>500 && FEC<2000){
+                goForward(.85);
+            }
+            else if(FEC<2500){
+                goForward(.5);
+            }
+            else if(FEC<2750){
+                goForward(.25);
+            }
+            else{
+                goForward(.1);
+            }
             ticks();
             telem();
         }

@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public abstract class superSuperClass extends LinearOpMode {
 
     public ElapsedTime time = new ElapsedTime();
-
+    public ElapsedTime atime = new ElapsedTime();
     @Override
     public void runOpMode() {
         initiate();

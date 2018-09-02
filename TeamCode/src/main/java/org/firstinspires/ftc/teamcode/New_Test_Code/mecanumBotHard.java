@@ -1,7 +1,11 @@
 package org.firstinspires.ftc.teamcode.New_Test_Code;
 
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.UltrasonicSensor;
 
 /**
  * Created by Keith Harder on 7/27/2018.
@@ -14,10 +18,21 @@ public abstract class mecanumBotHard extends superSuperClass {
     public DcMotor BLM;
     public DcMotor FRM;
 
+    public Servo lights;
+
+    //public OpticalDistanceSensor ODS;
+
+
     public double FEC;
     public double BEC;
     public double REC;
     public double LEC;
+    public double percm;
+    public double perc;
+    public double tic;
+    public double light;
+    public double pos;
+
 
     @Override
     public void initiate() {
@@ -25,6 +40,9 @@ public abstract class mecanumBotHard extends superSuperClass {
         BLM = hardwareMap.dcMotor.get("blm");
         FRM = hardwareMap.dcMotor.get("frm");
         BRM = hardwareMap.dcMotor.get("brm");
+        //ODS = hardwareMap.opticalDistanceSensor.get("ods");
+
+        lights = hardwareMap.servo.get("lights");
 
 
         while(BRM.getCurrentPosition() != 0){
@@ -49,7 +67,8 @@ public abstract class mecanumBotHard extends superSuperClass {
 
     }
 
-    //for traditional mecanum setup, use noted public voids.
+    //for traditional mecanum setup, use noted public voids.  needs work.
+    //  you should really just redo the configuration file.
     /*
     public void goForward(double power){
         FLM.setPower(-power);
@@ -133,54 +152,26 @@ public abstract class mecanumBotHard extends superSuperClass {
         telemetry.addData("BLM", BLM.getCurrentPosition());
         telemetry.addData("BRM", BRM.getCurrentPosition());
         telemetry.addData("FRM", FRM.getCurrentPosition());
+        //telemetry.addData("ods", ODS.getLightDetected());
         telemetry.update();
     }
-    /*
-    public void goLeft(double power){
-        FLM.setPower(power);
-        FRM.setPower(power);
-        BLM.setPower(-power);
-        BRM.setPower(-power);
-    }
-    public void FEC(double ticks){
-        ticks =FRM.getCurrentPosition() + BRM.getCurrentPosition() - FLM.getCurrentPosition() +  BLM.getCurrentPosition() / 4;
-    }
-    */
-    /*
-    public void ECForward(double ticks){
-        if ( FLM.getCurrentPosition() > -ticks  &&  BLM.getCurrentPosition() > -ticks && FRM.getCurrentPosition() < ticks && BRM.getCurrentPosition() < ticks) {
-            FLM.setPower(-.35);
-            FRM.setPower(.35);
-            BLM.setPower(-.35);
-            BRM.setPower(.35);
+    public void spdUpF(double dis){
+
+        percm = dis /100;
+        perc = dis/percm;
+        tic = FEC/percm;
+
+        if(tic <15){
+            goForward(.15);
+        }
+        else if(tic <35){
+            goForward(.25);
+        }
+        else if(tic < 65){
+            goForward(.5);
+        }
+        else if (tic <100){
+            goForward(.85);
         }
     }
-    public void ECBackward(double ticks){
-        if (FLM.getCurrentPosition() < ticks  &&  BLM.getCurrentPosition() < ticks && FRM.getCurrentPosition() > -ticks && BRM.getCurrentPosition() > -ticks) {
-            FLM.setPower(.35);
-            FRM.setPower(-.35);
-            BLM.setPower(.35);
-            BRM.setPower(-.35);
-        }
-    }
-    public void ECRight(double ticks){
-        if (FLM.getCurrentPosition() > -ticks  &&  BLM.getCurrentPosition() < ticks && FRM.getCurrentPosition() > -ticks && BRM.getCurrentPosition() < ticks) {
-            FLM.setPower(-.35);
-            FRM.setPower(-.35);
-            BLM.setPower(.35);
-            BRM.setPower(.35);
-        }
-    }
-    public void ECLeft(double ticks){
-        if (FLM.getCurrentPosition() < ticks  &&  BLM.getCurrentPosition() > -ticks && FRM.getCurrentPosition() <ticks && BRM.getCurrentPosition() > -ticks) {
-            FLM.setPower(.35);
-            FRM.setPower(.35);
-            BLM.setPower(-.35);
-            BRM.setPower(-.35);
-        }
-    }*/
-
-
-
-
 }
