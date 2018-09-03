@@ -13,17 +13,18 @@ public class MecanumTele extends mecanumBotHard {
             telem();
             goForward(gamepad1.left_stick_y);
             goRight(gamepad1.left_stick_x);
+            turn(gamepad1.right_trigger-gamepad1.left_trigger);
 
             lights.setPosition(light);
             light = gamepad1.right_trigger - gamepad1.left_trigger + pos;
 
             if (gamepad1.right_bumper && atime.seconds() > .5){
-                pos = pos+.05;
+                pos = pos+.01;
                 atime.reset();
 
             }
             else if (gamepad1.left_bumper && atime.seconds() > .5){
-                pos = pos-.05;
+                pos = pos-.01;
                 atime.reset();
 
             }
