@@ -11,12 +11,36 @@ public class MecanumTele extends mecanumBotHard {
     public void run() {
         while (opModeIsActive()){
             telem();
-            goForward(gamepad1.left_stick_y);
-            goRight(gamepad1.left_stick_x);
-            turn(gamepad1.right_trigger-gamepad1.left_trigger);
+            if(time.seconds()<2){
+                RunInpower();
+                idle();
+            }
+
+            if(gamepad1.dpad_right){
+                goForward(1);
+            }
+            else if(gamepad1.dpad_left){
+                goForward(-1);
+            }
+            else if (gamepad1.dpad_up){
+                goRight(-1);
+            }
+            else if (gamepad1.dpad_down){
+                goRight(1);
+            }
+            else if(gamepad1.left_trigger>.1){
+                turn(1);
+            }
+            else if(gamepad1.right_trigger>.1){
+                turn(-1);
+            }
+            else{
+                StopMotors(0);
+            }
+
 
             lights.setPosition(light);
-            light = gamepad1.right_trigger - gamepad1.left_trigger + pos;
+            light = pos;
 
             if (gamepad1.right_bumper && atime.seconds() > .5){
                 pos = pos+.01;

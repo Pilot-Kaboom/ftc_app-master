@@ -143,6 +143,12 @@ public abstract class mecanumBotHard extends superSuperClass {
         BRM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FRM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
+    public void RunInpower(){
+        FLM.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
+        BLM.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
+        BRM.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
+        FRM.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
+    }
     public void telem(){
         telemetry.addData("FEC",FEC);
         telemetry.addData("BEC",BEC);
